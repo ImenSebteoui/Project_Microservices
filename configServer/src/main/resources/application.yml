@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: #githubrepo
+          default-label: main
+          clone-on-start: true
+          username: ${GIT_USERNAME} # after using pat token
+          password: ${GIT_PASSWORD}
+  application:
+    name: configServer
