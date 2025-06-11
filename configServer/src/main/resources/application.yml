@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: #githubrepo
+          uri: https://github.com/ImenSebteoui/ConfigurationServer.git
           default-label: main
           clone-on-start: true
           username: ${GIT_USERNAME} # after using pat token
