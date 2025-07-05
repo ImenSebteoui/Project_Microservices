@@ -19,11 +19,15 @@ import java.util.stream.Collectors;
 public class ReclamationService {
 
     private final IReclamationRepository reclamrepository;
+/*
     private final UserClient userClient;
+*/
 
+/*
     public UserDto fetchUserInfo(String userId) {
         return userClient.getUserById(userId);
     }
+*/
 
     public ReclamationResponseDTO createReclamation(String userId, ReclamationRequestDTO dto) {
         Reclamation reclamation = ReclamationMapper.toEntity(dto, userId);

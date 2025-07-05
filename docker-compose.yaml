@@ -1,0 +1,95 @@
+version: "3.9"  # tu peux aussi supprimer cette ligne, elle est optionnelle et obsolète
+
+networks:
+  spring-cloud:
+
+services:
+
+  config-server:
+    image: openjdk:17-jdk  # Remplace par ton image custom ou build si besoin
+    container_name: configServer
+    volumes:
+      - ./config-server/target/configServer-0.0.1-SNAPSHOT.jar:/app/configServer.jar
+      - ./config-repo:/app/config-repo
+    working_dir: /app
+    command: ["java", "-jar", "configServer.jar"]
+    ports:
+      - "8888:8888"
+    networks:
+      - spring-cloud
+
+  discovery-server:
+    build:
+      context: ./Discovery-server
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-cloud
+    depends_on:
+      - config-server
+
+  api-gateway:
+    build:
+      context: ./APIGateway
+    container_name: api-gateway
+    ports:
+      - "8088:8080"
+    networks:
+      - spring-cloud
+    depends_on:
+      - config-server
+      - discovery-server
+
+  student-service:
+    build:
+      context: ./project-student
+    container_name: TestSpring
+    ports:
+      - "8085:8085"
+    networks:
+      - spring-cloud
+    depends_on:
+      - config-server
+      - discovery-server
+      - mysql-db  # si tu as une base MySQL dans le compose
+
+  course-service:
+    build:
+      context: ./project-course
+    container_name: reclamation-management-microservice
+    ports:
+      - "8082:8082"
+    networks:
+      - spring-cloud
+    depends_on:
+      - config-server
+      - discovery-server
+      - mongo-db  # si tu as une base MongoDB dans le compose
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: studentdb
+    ports:
+      - "3306:3306"
+    networks:
+      - spring-cloud
+
+  mongo-db:
+    image: mongo:5.0
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    networks:
+      - spring-cloud
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: start-dev
+    ports:
+      - 8087:8080

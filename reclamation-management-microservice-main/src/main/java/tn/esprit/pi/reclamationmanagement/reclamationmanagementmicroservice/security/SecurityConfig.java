@@ -28,7 +28,8 @@ public class SecurityConfig {
                                 "/users",
                                 "/users/login",
                                 "/users/verify-otp",
-                                "/api/reclamations/**"
+                                "/api/reclamations/**",
+                                "/**"
                         ).permitAll()// Allow Swagger UI without login
                         .requestMatchers("/error").permitAll()
                 )

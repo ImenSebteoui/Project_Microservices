@@ -22,7 +22,6 @@ import java.util.Optional;
 
 public class ReclamationController {
     @Autowired
-
     private final ReclamationService reclamationService;
 
     @Autowired
