@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class ReclamationMapper {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public static Reclamation toEntity(ReclamationRequestDTO dto, String userId) {
+    public static Reclamation toEntity(ReclamationRequestDTO dto, Long userId) {
         return Reclamation.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())

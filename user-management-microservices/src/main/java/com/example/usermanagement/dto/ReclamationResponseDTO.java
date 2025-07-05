@@ -8,5 +8,5 @@ public class ReclamationResponseDTO {
     private String title;
     private String description;
     private String status;
-    private String userId;
+    private Long userId;
 }

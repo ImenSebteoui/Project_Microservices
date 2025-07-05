@@ -1,14 +1,3 @@
 spring:
   application:
-    name: User-management
-  datasource:
-    url: jdbc:mysql://localhost:3306/TestSpring?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password:
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-
-server:
-  port: 9090
+    name: user-management

@@ -29,7 +29,7 @@ public class ReclamationService {
     }
 */
 
-    public ReclamationResponseDTO createReclamation(String userId, ReclamationRequestDTO dto) {
+    public ReclamationResponseDTO createReclamation(Long userId, ReclamationRequestDTO dto) {
         Reclamation reclamation = ReclamationMapper.toEntity(dto, userId);
         return ReclamationMapper.toDTO(reclamrepository.save(reclamation));
     }
@@ -67,4 +67,11 @@ public class ReclamationService {
         return ReclamationMapper.toDTO(reclamrepository.save(existing));
     }
 
+
+    public List<ReclamationResponseDTO> getByUserId(Long userId) {
+        List<Reclamation> reclamations = reclamrepository.findByUserId(userId);
+        return reclamations.stream()
+                .map(ReclamationMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

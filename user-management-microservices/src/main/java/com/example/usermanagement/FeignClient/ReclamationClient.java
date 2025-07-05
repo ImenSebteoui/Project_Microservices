@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "reclamation-management-microservice", url = "http://localhost:9091") // Replace with the actual URL of Reclamation Management service
+@FeignClient(name = "claim-management") // resolved by Eureka
 public interface ReclamationClient {
     @GetMapping("/api/reclamations/user/{id}")
-    List<ReclamationResponseDTO> getReclamationsByUserId(@PathVariable("id") String userId);
+    List<ReclamationResponseDTO> getReclamationsByUserId(@PathVariable("id") Long userId);
 }

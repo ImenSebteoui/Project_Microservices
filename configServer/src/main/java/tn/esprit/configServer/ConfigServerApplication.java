@@ -10,11 +10,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 public class ConfigServerApplication {
 
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.load();
-		System.setProperty("GIT_USERNAME", dotenv.get("GIT_USERNAME"));
-		System.setProperty("GIT_PASSWORD", dotenv.get("GIT_PASSWORD"));
-		System.out.println(System.getProperty("GIT_USERNAME"));
+		// No more dotenv!
 		SpringApplication.run(ConfigServerApplication.class, args);
 	}
-
 }

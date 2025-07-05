@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable String id) {
+    public UserDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -42,17 +42,17 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserDto updateUser(@PathVariable String id, @RequestBody UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
         return userService.updateUser(id, userUpdateDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable String id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
     @GetMapping("/{id}/reclamations")
-    public ResponseEntity<List<ReclamationResponseDTO>> getReclamationsByUserId(@PathVariable String id) {
+    public ResponseEntity<List<ReclamationResponseDTO>> getReclamationsByUserId(@PathVariable Long id) {
         // Fetch reclamations from the service, which will call the Feign client
         List<ReclamationResponseDTO> reclamations = userService.getReclamationsByUserId(id);
         return ResponseEntity.ok(reclamations);

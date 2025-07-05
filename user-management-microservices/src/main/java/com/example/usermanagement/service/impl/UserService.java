@@ -31,7 +31,7 @@ public class UserService {
         return UserMapper.toDto(userRepository.save(user));
     }
 
-    public UserDto getUserById(String id) {
+    public UserDto getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return UserMapper.toDto(user);
@@ -49,7 +49,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDto updateUser(String id, UserUpdateDto dto) {
+    public UserDto updateUser(Long id, UserUpdateDto dto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -57,10 +57,11 @@ public class UserService {
         return UserMapper.toDto(userRepository.save(user));
     }
 
-    public void deleteUser(String id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
-    public List<ReclamationResponseDTO> getReclamationsByUserId(String userId) {
+
+    public List<ReclamationResponseDTO> getReclamationsByUserId(Long userId) {
         return reclamationClient.getReclamationsByUserId(userId);  // Calls the Feign client
     }
 }

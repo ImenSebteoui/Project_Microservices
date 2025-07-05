@@ -30,7 +30,7 @@ public class ReclamationController {
     }
 
    @PostMapping("/{userId}")
-   public ReclamationResponseDTO create(@PathVariable String userId,
+   public ReclamationResponseDTO create(@PathVariable Long userId,
                                         @Valid @RequestBody ReclamationRequestDTO dto) {
        return reclamationService.createReclamation(userId, dto);
    }
@@ -51,5 +51,10 @@ public class ReclamationController {
     public ReclamationResponseDTO update(@PathVariable String id,
                                          @Valid @RequestBody ReclamationRequestDTO dto) {
         return reclamationService.update(id, dto);
+    }
+
+    @GetMapping("/user/{id}")
+    public List<ReclamationResponseDTO> getByUserId(@PathVariable Long id) {
+        return reclamationService.getByUserId(id);
     }
 }

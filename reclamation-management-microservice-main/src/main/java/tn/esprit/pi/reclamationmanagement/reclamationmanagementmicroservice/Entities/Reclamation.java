@@ -29,7 +29,7 @@ public class Reclamation {
     @NotBlank
     private String description;
     private ReclamationStatus status;
-    private String userId;
+    private Long userId;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String image;
