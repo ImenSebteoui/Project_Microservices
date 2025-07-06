@@ -7,8 +7,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version> <!-- Use a compatible version -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.2.5</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.example</groupId>
@@ -42,11 +42,11 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- MySQL -->
+        <!-- ✅ MySQL JDBC Driver -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
         </dependency>
 
         <!-- Lombok -->
@@ -64,10 +64,13 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
+        <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Config Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
@@ -85,12 +88,14 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
-        <!-- Eureka Server -->
+
+        <!-- Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!-- Tests -->
+
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -107,16 +112,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.mysql</groupId>
-                <artifactId>mysql-connector-j</artifactId>
-                <version>8.3.0</version> <!-- Or latest -->
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.yaml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

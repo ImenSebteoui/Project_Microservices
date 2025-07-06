@@ -1,3 +1,9 @@
 spring:
   application:
     name: user-management
+  config:
+    import: "optional:configserver:"
+
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
